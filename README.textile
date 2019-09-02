@@ -1,0 +1,50 @@
+h1. The MIDI trigger Box
+
+The MIDI trigger box is a device which helps to synchronize external devices with a 
+TTL clock.
+
+When the trigger box is enabled two things happen: First the recording state is changed  from zero to one. The recording state is available via a BNC connector on the device. The second thing that happens is that the clock input is copied to the output. The following gives an overview:
+	
+<pre>
+INPUT
+Clock IN
+_|---|___|---|___|---|___|---|___|---|___|---|___|---|___|---|___
+
+OUTPUT
+
+Recording State  
+_________________________|--------------------------------|________
+
+Clock Out        
+_________________________|---|___|---|___|---|___|---|___________
+</pre>
+
+h2. How to use
+
+There are two ways to change the recording state.
+
+# __Button__ the button is changed from OFF to TEST. When OFF the recording state is OFF. When Test, the recording state is ON. If the button is used a NOTE ON MIDI message is send over the USB connection and a NOTE OFF message is send when it off. This enables users to track the button change in a DAW software system. Ignore this note on message 
+# __MIDI__ When connecting the trigger box via a USB cable to a computer it is recognized as a standard MIDI device. When sending a MIDI - NOTE ON message on MIDI channel 13, the recording state is changed to ON. A MIDI - NOTE OFF message switches the recording state to OFF. So while a "key" is pressed the recording is enabled. Note that only NOTE ON and OFF messages are only 
+
+h2. Hardware
+
+To meet the requirements of being a standard MIDI device and a device that is capable of sending out 5V signals two microcontrollers are used.
+
+A Teensy 3.2 drives the system and reacts to the buttons and MIDI messages. It sends out the recording state and the clock output but at 3.3V.
+
+An Arduino is used to send out the 5V TTL. It is simply copies the recording state and clock output it gets from the Teensy and immediately sends it through via the connected BNC connections. 
+
+h2. Possible improvements
+
+Currently the 5V output depends on the output of the connected USB port. The output clock might not be a clean, stable 5V block wave but perhaps more 4.8V.
+
+There are two microcontrollers in the system. One for USB MIDI compatibility and one for 5V output. Replacing the two microcontroller with one that is capable of both 5V out and MIDI compatibility would be an improvement. 
+
+h2. Structure
+
+In the arduino folder two arduino patches can be found. One called passthrough which is for the Arduino that passess messages through. The other is a platformio project for the Teensy with the main code in src/main.
+
+h2. Credits
+
+Joren Six at IPEM, University Ghent
+
