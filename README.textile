@@ -1,7 +1,6 @@
 h1. The MIDI trigger Box
 
-The MIDI trigger box is a device which helps to synchronize external devices with a 
-TTL clock.
+The MIDI trigger box is a device which helps to synchronize external devices with a TTL clock.
 
 When the trigger box is enabled two things happen: First the recording state is changed  from zero to one. The recording state is available via a BNC connector on the device. The second thing that happens is that the clock input is copied to the output. The following gives an overview:
 	
