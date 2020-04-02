@@ -12,7 +12,9 @@
 //D2 = digital pin 2
 //D3 = digital pin 3
 
+//print debug information
 boolean debug = false;
+
 volatile boolean pin2Changed = false;
 volatile boolean pin3Changed = false;
 
