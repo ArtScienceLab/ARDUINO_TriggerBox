@@ -25,13 +25,32 @@ There are two ways to change the recording state.
 # __Button__ the button is changed from OFF to TEST. When OFF the recording state is OFF. When Test, the recording state is ON. If the button is used a NOTE ON MIDI message is send over the USB connection and a NOTE OFF message is send when it off. This enables users to track the button change in a DAW software system. Ignore this note on message 
 # __MIDI__ When connecting the trigger box via a USB cable to a computer it is recognized as a standard MIDI device. When sending a MIDI - NOTE ON message on MIDI channel 13, the recording state is changed to ON. A MIDI - NOTE OFF message switches the recording state to OFF. So while a "key" is pressed the recording is enabled. Note that only NOTE ON and OFF messages are only 
 
-h2. Scenarios
+
+h2. Scenario - Condition with varying length and EEG
+
+<center>
+<figure>
+<img  alt="Visualization of analog measurements" src="media/trigger_box_schemas/trigger_box_varying_duration.svg">
+<caption>Ableton sends start and stop sync markers to an EEG system using MIDI note of preditermined length</caption>
+</figure></center>
+
+h2. Scenario - Condition with constant length and EEG
 
 <center>
 <figure>
 <img  alt="Visualization of analog measurements" src="media/trigger_box_schemas/trigger_box_constant_duration_ableton.svg">
 <caption>Ableton sends start and stop sync markers to an EEG system using MIDI note of preditermined length</caption>
 </figure></center>
+
+h2. Scenario - Condition with constant length and a sensor
+
+<center>
+<figure>
+<img  alt="Visualization of analog measurements" src="media/trigger_box_schemas/trigger_box_sensor.svg">
+<caption>Ableton sends start and stop sync markers to an EEG system using MIDI note of preditermined length</caption>
+</figure></center>
+
+
 
 h2. Hardware
 
