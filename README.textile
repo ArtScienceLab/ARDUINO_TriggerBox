@@ -29,7 +29,7 @@ h2. Scenarios
 
 <center>
 <figure>
-<img width="400" alt="Visualization of analog measurements" src="media/trigger_box_schemas/trigger_box_constant_duration_ableton.svg">
+<img  alt="Visualization of analog measurements" src="media/trigger_box_schemas/trigger_box_constant_duration_ableton.svg">
 <caption>Ableton sends start and stop sync markers to an EEG system using MIDI note of preditermined length</caption>
 </figure></center>
 
