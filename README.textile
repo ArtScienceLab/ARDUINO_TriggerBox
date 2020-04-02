@@ -28,26 +28,41 @@ There are two ways to change the recording state.
 
 h2. Scenario - Condition with varying length and EEG
 
+In this scenario there is a task a participant needs to execute of unknown length while EEG is being recorded. The EEG system needs to be synchronized with Ableton, where for example, audio is recorded. In this case it is best to use the trigger box button to send a sync signal to both Ableton and the EEG System. 
+
+When the button is used to start the recording, a MIDI NOTE ON is send to Ableton and simultaneously the trigger connected to the EEG system is set to HIGH. When the recording is stopped a NOTE OFF is send to ableton and at the same time the trigger is set to low in the EEG system.
+
+In post-processing the start and stop times need to be compared and the difference used to synchronize the signals. 
+
+
 <center>
 <figure>
 <img  alt="Visualization of analog measurements" src="media/trigger_box_schemas/trigger_box_varying_duration.svg">
-<caption>Ableton sends start and stop sync markers to an EEG system using MIDI note of preditermined length</caption>
+<caption>The trigger box button sends stop sync markers to an EEG system and to Ableton or an other DAW which is recording MIDI</caption>
 </figure></center>
 
 h2. Scenario - Condition with constant length and EEG
 
+In this scenario the condition has a predetermined length, e.g.  30 seconds. Then Ableton can be used to drive the trigger box. When Ableton sends a NOTE ON on MIDI Channel 13, the recording is started. After 30 seconds a NOTE OFF stops the recording. The trigger box sets the recording pulse to HIGH when the NOTE ON is received and to LOW when the NOTE OFF is received. The advantage is that each recording has the expected length exactly.
+
+An example of this setup can be found in the examples directory.
+
 <center>
 <figure>
 <img  alt="Visualization of analog measurements" src="media/trigger_box_schemas/trigger_box_constant_duration_ableton.svg">
-<caption>Ableton sends start and stop sync markers to an EEG system using MIDI note of preditermined length</caption>
+<caption>Ableton sends start and stop sync markers to an EEG system using MIDI note of predetermined length</caption>
 </figure></center>
 
 h2. Scenario - Condition with constant length and a sensor
 
+This scenario is similar to the previous scenario only we here use a sensor which responds to clock input in stead of an EEG system. When the recording is started (with the NOTE ON) the clock input is passed through the trigger box. The sensor starts capturing and measures on each clock pulse. It reports sensors measurements back to Ableton.
+
+In this case the sensor only measures when the recording.
+
 <center>
 <figure>
 <img  alt="Visualization of analog measurements" src="media/trigger_box_schemas/trigger_box_sensor.svg">
-<caption>Ableton sends start and stop sync markers to an EEG system using MIDI note of preditermined length</caption>
+<caption>Ableton sends start and stop messages system using a MIDI note of predetermined length. This pulse acts as a gate to let a clock input through or not. The sensor is only active during the time the 'gate' is open: in effect while the recording is ongoing</caption>
 </figure></center>
 
 
@@ -68,7 +83,7 @@ There are two microcontrollers in the system. One for USB MIDI compatibility and
 
 h2. Structure
 
-In the arduino folder two arduino patches can be found. One called passthrough which is for the Arduino that passess messages through. The other is a platformio project for the Teensy with the main code in src/main.
+In the arduino folder two arduino patches can be found. One called passthrough which is for the Arduino that passes messages through. The other is a platformio project for the Teensy with the main code in src/main.
 
 h2. Credits
 
